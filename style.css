@@ -1,0 +1,227 @@
+/* =========================
+   Base
+========================= */
+* { box-sizing: border-box; }
+
+:root{
+  --neon: #00ff66;
+  --neon2: #00ffcc;
+  --bg: #000;
+  --border: rgba(0,255,102,.55);
+}
+
+body{
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 30%, #061a10 0%, #000 55%, #000 100%);
+  color: var(--neon);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 18px;
+  overflow-x: hidden;
+}
+
+.terminal{
+  width: 92%;
+  max-width: 680px;
+  min-height: 380px;
+
+  border: 2px solid var(--border);
+  padding: 18px;
+  box-shadow:
+    0 0 18px rgba(0,255,102,.18),
+    inset 0 0 18px rgba(0,255,102,.10);
+
+  border-radius: 14px;
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(2px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Scanline sutil */
+.terminal::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0,255,102,.06),
+    rgba(0,0,0,0) 6px
+  );
+  opacity: .35;
+  pointer-events:none;
+  mix-blend-mode: screen;
+}
+
+.title{
+  text-align:center;
+  font-size: 26px;
+  letter-spacing: .14em;
+  margin: 8px 0 18px;
+  text-shadow: 0 0 10px rgba(0,255,102,.35);
+}
+
+/* =========================
+   Inicio
+========================= */
+.start{
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.warning{
+  margin: 0;
+  font-size: 16px;
+  text-align:center;
+  color: rgba(0,255,102,.95);
+}
+
+.btn{
+  width: 100%;
+  padding: 14px 16px;
+  background: #000;
+  color: var(--neon);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .2s ease, opacity .2s ease;
+  box-shadow: 0 0 14px rgba(0,255,102,.20);
+}
+
+.btn:active{ transform: scale(.98); }
+
+.btn:disabled{
+  opacity: .55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* =========================
+   Pantalla (texto/progreso)
+========================= */
+.screen{
+  margin-top: 10px;
+}
+
+.texto{
+  font-size: 15.5px;
+  line-height: 1.6;
+  word-break: break-word;
+  min-height: 160px;
+  white-space: pre-wrap; /* para los saltos de línea */
+  padding: 8px 2px;
+}
+
+.barra{
+  width: 100%;
+  height: 16px;
+  border: 1px solid rgba(0,255,102,.45);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 14px;
+  background: rgba(0,0,0,.35);
+}
+
+.progreso{
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--neon), var(--neon2));
+  transition: width .45s ease;
+}
+
+/* =========================
+   Resultado final
+========================= */
+.resultado{
+  margin-top: 18px;
+  text-align: center;
+}
+
+.buuu{
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 1.05;
+  text-shadow: 0 0 18px rgba(0,255,102,.25);
+}
+
+.smallline{
+  font-size: 18px;
+  margin-top: 8px;
+}
+
+.fecha{
+  opacity: .9;
+}
+
+/* =========================
+   Efectos: glitch / temblor
+========================= */
+.glitch{
+  animation: glitch .16s infinite steps(2, end);
+}
+
+@keyframes glitch{
+  0%   { transform: translate(0,0); filter: hue-rotate(0deg) brightness(1); }
+  25%  { transform: translate(5px,-3px); }
+  50%  { transform: translate(-5px,3px); }
+  75%  { transform: translate(3px,5px); }
+  100% { transform: translate(0,0); filter: hue-rotate(6deg) brightness(1.2); }
+}
+
+.falla{
+  animation: falla .11s infinite;
+}
+
+@keyframes falla{
+  0% { filter: brightness(1); }
+  50%{ filter: brightness(2.2) contrast(1.05); }
+  100%{ filter: brightness(.7); }
+}
+
+/* “Temblor” real */
+.temblor{
+  animation: temblor .18s infinite linear;
+}
+
+@keyframes temblor{
+  0% { transform: translate(0,0); }
+  25%{ transform: translate(-1px,1px); }
+  50%{ transform: translate(2px,-1px); }
+  75%{ transform: translate(-1px,-2px); }
+  100%{ transform: translate(0,0); }
+}
+
+/* =========================
+   Pantalla negra colapso
+========================= */
+.apagado{
+  position: fixed;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+  z-index: 10;
+}
+
+.apagado.on{
+  opacity: 1;
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 480px){
+  .terminal{ width: 94%; padding: 14px; min-height: 360px; }
+  .title{ font-size: 22px; margin-bottom: 14px; }
+  .texto{ font-size: 14px; }
+  .buuu{ font-size: 48px; }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Scan</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body id="body">
+  <main class="terminal" aria-label="Terminal hacker">
+    <h1 class="title">SYSTEM SCAN</h1>
+
+    <section id="inicio" class="start">
+      <p class="warning">⚠ Sistema desconocido</p>
+      <button id="btnInicio" type="button" class="btn">INICIAR ANÁLISIS</button>
+    </section>
+
+    <section class="screen">
+      <div id="texto" class="texto" aria-live="polite"></div>
+
+      <div id="barra" class="barra" aria-hidden="true">
+        <div id="progreso" class="progreso"></div>
+      </div>
+
+      <div id="resultado" class="resultado" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <!-- Pantalla colapso -->
+  <div id="apagado" class="apagado" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
