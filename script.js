@@ -136,7 +136,7 @@ function mostrarSorpresaFinal() {
 
   const broma = document.createElement("div");
   broma.className = "smallline";
-  broma.textContent = "Solo era una broma...";
+  broma.textContent = "El usuario fue engañado exitosamente.";
 
   const completada = document.createElement("div");
   completada.className = "smallline";
@@ -148,7 +148,7 @@ function mostrarSorpresaFinal() {
   const creada = document.createElement("div");
   creada.className = "smallline";
   creada.style.marginTop = "10px";
-  creada.textContent = `Esta pequeña trampa fue creada por: Annie 💻`;
+  creada.textContent = `Atentamente Annie ❤️`;
 
   const cierre = document.createElement("div");
   cierre.className = "smallline";
