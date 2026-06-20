@@ -2,7 +2,7 @@
 // Nombre desde URL
 // =========================
 const parametros = new URLSearchParams(window.location.search);
-const nombre = parametros.get("nombre") ? parametros.get("nombre") : "Roy Padilla";
+const nombre = parametros.get("nombre") ? parametros.get("nombre") : "Usuario";
 
 // Mensajes del análisis (según tu lista)
 const mensajes = [
